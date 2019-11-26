@@ -44,13 +44,15 @@ public class Execute {
      */
     public static void traverseNetwork(BTree<Person> network) { // pre-Order
 		StackL<BTNode> newStack = new StackL<>();
+		if(network.getRoot() == null) return;
 
 		newStack.push(network.getRoot());
 
-		while (newStack.isEmpty() == false) {
+		while (!newStack.isEmpty() ) {
 			BTNode temp = newStack.peek();
-			temp.toString();
+			temp.printNode();
 			newStack.pop();
+
 			if (temp.getRight() != null) {
 				newStack.push(temp.getRight());
 			}
@@ -97,6 +99,27 @@ public class Execute {
          */
         public static void exploreBranch (BTree < Person > network, String directions){
             // Your code goes here
+            BTNode temp = network.getRoot();
+            for(int i = 0 ; i < directions.length(); i++){
+                if(directions.charAt(i) == 'L'){
+                    if(temp.getLeft() != null) {
+                        temp = temp.getLeft();
+                    }
+                    else{
+                        System.out.println("Invalid Direction::");
+                        throw new NullPointerException();
+                    }
+                }
+                if(directions.charAt(i) == 'R'){
+                    if(temp.getRight() != null) {
+                        temp = temp.getRight();
+                    }else{
+                        System.out.println("Invalid Direction::");
+                        throw new NullPointerException();
+                    }
+                }
+            }
+            temp.printNode();
         }
 
 
@@ -104,7 +127,7 @@ public class Execute {
          * TODO 18: complete the main method, according to the comment below
          */
         public static void main (String[]args) throws FileNotFoundException, IOException {
-            String filename = /* filename corresponding to advisors.txt */;
+            String filename = "advisors.txt"/* filename corresponding to advisors.txt */;
 
             // Here we create a binary tree from the advisors listed in the above text file
             BTree<Person> network = buildNetwork(filename);

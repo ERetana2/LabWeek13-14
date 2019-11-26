@@ -9,8 +9,6 @@ public class StackL<T> {
         o	One constructor that take a node and starts the stack with this node in it
      */
     StackL() {
-        this.top = new Node<T>();
-        this.size++;
     }
 
     StackL(Node<T> root) {
@@ -44,9 +42,10 @@ public class StackL<T> {
 		Node myNode = new Node(data);
         if (isEmpty()) {
 			this.top = myNode;
+        } else {
+            myNode.setNext(this.top);
+            this.top = myNode;
         }
-        myNode.setNext(this.top);
-        this.top = myNode;
 
         this.size++;
     }
