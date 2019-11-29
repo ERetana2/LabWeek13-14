@@ -137,7 +137,7 @@ public class Execute {
         System.out.println();
 
         // We print the branch of BTree network that is described by "LLRLRLR"
-        try {
+        try { // try and catch block to catch any invalid given directions
             exploreBranch(network, "LLRLRLR");
         }catch (NullPointerException e){
             System.out.println("INVALID DIRECTION::");

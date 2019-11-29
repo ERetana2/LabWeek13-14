@@ -27,7 +27,7 @@ public class StackL<T> {
      */
     public int getSize() {
         return this.size;
-    }
+    } // return the size;
 
 
     // Other methods ***************************************************************
@@ -39,40 +39,43 @@ public class StackL<T> {
      */
     public void push(T data) {
         // Your code goes here
-		Node myNode = new Node(data);
+		Node myNode = new Node(data); //create a new node with the data given
         if (isEmpty()) {
-			this.top = myNode;
+			this.top = myNode; // if stack is empty assign top to myNode
         } else {
-            myNode.setNext(this.top);
-            this.top = myNode;
+            myNode.setNext(this.top); // if stack contains element , assign the next element to the top element (
+                                        //  new element placed)
+            this.top = myNode; // top is set equal to myNode
         }
 
-        this.size++;
+        this.size++; // increase size
     }
 
     public void pop() {
         // Your code goes here
         if (isEmpty()) return;
+        // remove the first element of the stack by readjusting the pointer to top.getNext()
         this.top = top.getNext();
-        this.size--;
+        this.size--; // decrease size
     }
 
     public T peek() {
         if (!isEmpty()) {
-            return top.getData();
+            return top.getData(); // return the element at the top of stack , top.getData()
         }
         return null;
     }
 
     public void clear() {
         // Your code goes here
+        //set the top to null and the size to 0 to reset
         this.top = null;
         this.size = 0;
     }
 
     public boolean isEmpty() {
         // Your code goes here
-        return this.top == null;
+        return this.top == null; // if the top does not have element assigned --> it is empty
     }
 
 }

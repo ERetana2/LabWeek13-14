@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 
 public class QueueA<T extends Object> {
     /*	ATTRIBUTES: *********************************************
@@ -42,32 +43,29 @@ public class QueueA<T extends Object> {
      */
     public void enqueue(T data) {
         // You code goes here
-        if (this.size == 0) {
-            this.head = 0;
-            this.queue[tail] = data;
-        } else if (!isFull()) {
-			this.tail = (this.tail + 1) % this.queue.length;
-            this.queue[tail] = data;
+        if(isFull()){ // if is full , throw exception
+            throw new IllegalStateException("::Queue is full::");
         }
-        if(!isFull()){
-        	size++;
-		}
-        return;
+        this.queue[tail] = data; // set queue[tail] equal to given data
+        this.tail = (this.tail + 1) % this.queue.length; // readjust tail
+        this.size++; // increase size
     }
 
     public T dequeue() {
         // You code goes here
-		int temp = head;
-        if (!isEmpty()) {
-            this.head = (this.head + 1) % this.queue.length;
-            this.size--;
-            return this.queue[temp];
+        if (isEmpty()) { // if queue is empty, throw an exception
+            throw new NoSuchElementException("::Queue is empty::");
         }
-        return null;
+        T temp = this.queue[head + 1]; // create a temporary variable to return dequeued element
+        this.queue[head + 1] = null; // remove element at head + 1
+        this.head = (this.head + 1) % this.queue.length; // readjust head
+        this.size--; //decrease size
+		return temp;
     }
 
     public void clear() {
         // You code goes here
+        //reset all of the class variables to the original values
         this.size = 0;
         this.head = -1;
         this.tail = 0;
@@ -76,20 +74,20 @@ public class QueueA<T extends Object> {
 
     public T peek() {
         // You code goes here
-        if (!isEmpty()) {
-            return queue[head];
+        if (!isEmpty()) { // if queue is not empty, return the first element in the queue
+            return queue[head + 1];
         }
-        return null;
+        return null; // if empty return null;
     }
 
     public boolean isEmpty() {
         // You code goes here
-        return this.head == -1;
+        return size == 0; // isEmpty when queue size is 0
     }
 
     public boolean isFull() {
         // You code goes here
-        return size == queue.length;
+        return size == queue.length; // is full when the queue size is equal to num in the constructor. ( queue.length)
     }
 
 }
