@@ -140,7 +140,7 @@ public class Execute {
         try { // try and catch block to catch any invalid given directions
             exploreBranch(network, "LLRLRLR");
         }catch (NullPointerException e){
-            System.out.println("INVALID DIRECTION::");
+            System.out.println("::INVALID DIRECTION::");
         }
         System.out.println();
 
