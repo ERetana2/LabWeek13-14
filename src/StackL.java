@@ -55,13 +55,13 @@ public class StackL<T> {
         // Your code goes here
         if (isEmpty()) return;
         // remove the first element of the stack by readjusting the pointer to top.getNext()
-        this.top = top.getNext();
+        this.top = this.top.getNext();
         this.size--; // decrease size
     }
 
     public T peek() {
         if (!isEmpty()) {
-            return top.getData(); // return the element at the top of stack , top.getData()
+            return this.top.getData(); // return the element at the top of stack , top.getData()
         }
         return null;
     }

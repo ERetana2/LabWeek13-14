@@ -56,8 +56,8 @@ public class QueueA<T extends Object> {
         if (isEmpty()) { // if queue is empty, throw an exception
             throw new NoSuchElementException("::Queue is empty::");
         }
-        T temp = this.queue[head + 1]; // create a temporary variable to return dequeued element
-        this.queue[head + 1] = null; // remove element at head + 1
+        T temp = this.queue[this.head + 1]; // create a temporary variable to return dequeued element
+        this.queue[this.head + 1] = null; // remove element at head + 1
         this.head = (this.head + 1) % this.queue.length; // readjust head
         this.size--; //decrease size
 		return temp;
