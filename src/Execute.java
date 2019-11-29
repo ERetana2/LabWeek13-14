@@ -100,7 +100,6 @@ public class Execute {
      * 'R' indicates that we need to explore the branch going to the right subtree
      */
     public static void exploreBranch(BTree<Person> network, String directions) {
-        // Your code goes here
         BTNode temp = network.getRoot();
         for (int i = 0; i < directions.length(); i++) {
             if (directions.charAt(i) == 'L') {
